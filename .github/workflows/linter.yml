@@ -11,6 +11,14 @@ jobs:
     steps: 
     
       - name: Checkout Code 
+        # checkout is a premade github action (list of all actions can be found at github market place)
+        # this checks out all the code (when the fetch depth =0 otherwise only one commit) to the root repo
         uses: actions/checkout@v3
         with: 
           fetch-depth: 0
+          
+      - name: Lint Code Base
+        uses: github/super-linter@v4
+        env: 
+          VALIDATE_ALL_CODEBASE: true
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
